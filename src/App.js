@@ -115,7 +115,7 @@ function App() {
   return (
     <div className="App">
 
-{(years.length!=0)?
+{/* {(years.length!=0)? */}
   <div>
 
 
@@ -180,9 +180,9 @@ function App() {
 
 </div>
       
-: 
+{/* : 
 <div className='pageLoaderContainer'><div class="pageLoader"></div></div>
-}
+} */}
 
  
 
