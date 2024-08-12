@@ -63,7 +63,7 @@ function App() {
         const resAllTopics=await axios.get("https://blackcoffer-backend-app.onrender.com/getAllTopics");
         console.log(resAllTopics.data);
         setTopics(resAllTopics.data)
-
+        
         //getting all data
         const resAllData=await axios.get("https://blackcoffer-backend-app.onrender.com/getAllData");
         console.log(resAllData.data);
@@ -115,7 +115,7 @@ function App() {
   return (
     <div className="App">
 
-{/* {(years.length!=0)? */}
+{(years.length!=0 && topics.length!=0)?
   <div>
 
 
@@ -180,9 +180,9 @@ function App() {
 
 </div>
       
-{/* : 
+: 
 <div className='pageLoaderContainer'><div class="pageLoader"></div></div>
-} */}
+}
 
  
 
