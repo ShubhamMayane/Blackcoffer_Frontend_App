@@ -55,17 +55,17 @@ function App() {
       
       try {
         //1.getting all data
-        const resAllData=await axios.get("http://localhost:5000/getAllData");
+        const resAllData=await axios.get("https://blackcoffer-backend-app.onrender.com/getAllData");
         console.log(resAllData.data);
         setDataForChild(resAllData.data);
 
        
 
-        const resAllYears=await axios.get("http://localhost:5000/getAllYears");
+        const resAllYears=await axios.get("https://blackcoffer-backend-app.onrender.com/getAllYears");
         console.log(resAllYears.data);
         setYears(resAllYears.data);
 
-        const resAllTopics=await axios.get("http://localhost:5000/getAllTopics");
+        const resAllTopics=await axios.get("https://blackcoffer-backend-app.onrender.com/getAllTopics");
         console.log(resAllTopics.data);
         setTopics(resAllTopics.data)
 
