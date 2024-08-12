@@ -1,38 +1,67 @@
-.App {
+p{
+  color: red;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.myForm{
+
+  display: flex !important;
+  justify-content: space-evenly;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+.loader-container{
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+  display: flex ;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: gray;
+
 }
 
-.App-link {
-  color: #61dafb;
+/*css for loader*/
+.loader {
+  border: 2px solid #FFF;
+  width: 48px;
+  height: 48px;
+  background: #FF3D00;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 2s linear infinite;
+}
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 24px solid;
+  border-color: transparent #FFF;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
 
-@keyframes App-logo-spin {
-  from {
+@keyframes rotation {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
+}
+
+.loader-header{
+
+  font-size: 20px;
+  color: white;
+  font-weight: 200;
+}
+
+
+.btn-primary{
+  background-color: #FF3D00 !important;
 }
