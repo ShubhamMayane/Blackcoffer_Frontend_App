@@ -54,13 +54,8 @@ function App() {
     const fetchData = async () =>{
       
       try {
-        //1.getting all data
-        const resAllData=await axios.get("https://blackcoffer-backend-app.onrender.com/getAllData");
-        console.log(resAllData.data);
-        setDataForChild(resAllData.data);
 
-       
-
+        
         const resAllYears=await axios.get("https://blackcoffer-backend-app.onrender.com/getAllYears");
         console.log(resAllYears.data);
         setYears(resAllYears.data);
@@ -68,6 +63,14 @@ function App() {
         const resAllTopics=await axios.get("https://blackcoffer-backend-app.onrender.com/getAllTopics");
         console.log(resAllTopics.data);
         setTopics(resAllTopics.data)
+        
+        //getting all data
+        const resAllData=await axios.get("https://blackcoffer-backend-app.onrender.com/getAllData");
+        console.log(resAllData.data);
+        setDataForChild(resAllData.data);
+
+       
+
 
         
 
@@ -112,67 +115,76 @@ function App() {
   return (
     <div className="App">
 
-<div>
+{(years.length!=0 && topics.length!=0)?
+  <div>
 
 
-<form onSubmit={handleSubmit} className="myForm">
-    
-    
-    <select name="year" className='form-select'>
-        <option value="">Select Year</option>
-        {years.map((item)=>{
 
-            return (
-                <option value={item}>{item}</option>
-            )
-
-        })}
-    
-    </select>
-
-  <select name="topic" className='form-select'>
-    <option value="">Select Topic</option>
-    {topics.map((item)=>{
-
-    return (
-        <option value={item}>{item}</option>
-    )
-
-    })}
-  </select>
-
-  <select name="unit" className='form-select'>
-    <option value="">Select Unit</option>
-    {units.map((item)=>{
-
-        return (
-            <option value={item}>{item}</option>
-        )
-
-    })}
-  </select>
-
+  <form onSubmit={handleSubmit} className="myForm">
+      
+      
+      <select name="year" className='form-select'>
+          <option value="">Select Year</option>
+          {years.map((item)=>{
   
-  <input type="submit" className='btn btn-primary' />
-</form>
-
+              return (
+                  <option value={item}>{item}</option>
+              )
+  
+          })}
+      
+      </select>
+  
+    <select name="topic" className='form-select'>
+      <option value="">Select Topic</option>
+      {topics.map((item)=>{
+  
+      return (
+          <option value={item}>{item}</option>
+      )
+  
+      })}
+    </select>
+  
+    <select name="unit" className='form-select'>
+      <option value="">Select Unit</option>
+      {units.map((item)=>{
+  
+          return (
+              <option value={item}>{item}</option>
+          )
+  
+      })}
+    </select>
+  
+    
+    <input type="submit" className='btn btn-primary' />
+  </form>
+  
+  
+  
+  
+  
+  
+      {visible==true? <div>
+        <PieChart dataFromParent={dataForChild} yearFromParent={year} topicFromParent={topic} unitFromParent={unit}/>
+        <hr/>
+        <Table dataFromParent={dataForChild} yearFromParent={year} topicFromParent={topic} unitFromParent={unit}/>
+      </div>:
+       <div class="loader-container">
+        <p className="loader-header">Please Select Options</p>
+        <span class="loader"></span>
+       </div>
+      
+   }
 
 </div>
+      
+: 
+<div className='pageLoaderContainer'><div class="pageLoader"></div></div>
+}
 
-
-
-    {visible==true? <div>
-      <PieChart dataFromParent={dataForChild} yearFromParent={year} topicFromParent={topic} unitFromParent={unit}/>
-      <hr/>
-      <Table dataFromParent={dataForChild} yearFromParent={year} topicFromParent={topic} unitFromParent={unit}/>
-    </div>:
-     <div class="loader-container">
-      <p className="loader-header">Please Select Options</p>
-      <span class="loader"></span>
-     </div>
-    
- }
-     
+ 
 
 
 

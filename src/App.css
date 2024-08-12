@@ -65,3 +65,33 @@ p{
 .btn-primary{
   background-color: #FF3D00 !important;
 }
+
+
+
+/*for page loader*/
+/* HTML: <div class="loader"></div> */
+
+.pageLoaderContainer{
+
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+.pageLoader {
+  height: 4px;
+  width: 130px;
+  --c:no-repeat linear-gradient(#FF3D00 0 0);
+  background: var(--c),var(--c),#d7b8fc;
+  background-size: 60% 100%;
+  animation: l16 3s infinite
+}
+
+@keyframes l16 {
+  0%   {background-position:-150% 0,-150% 0}
+  66%  {background-position: 250% 0,-150% 0}
+  100% {background-position: 250% 0, 250% 0}
+}
