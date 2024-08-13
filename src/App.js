@@ -56,22 +56,49 @@ function App() {
       try {
 
         
-        const resAllYears=await axios.get("https://blackcoffer-backend-app.onrender.com/getAllYears");
-        console.log(resAllYears.data);
-        setYears(resAllYears.data);
-
-        const resAllTopics=await axios.get("https://blackcoffer-backend-app.onrender.com/getAllTopics");
-        console.log(resAllTopics.data);
-        setTopics(resAllTopics.data)
-        
-        //getting all data
-        const resAllData=await axios.get("https://blackcoffer-backend-app.onrender.com/getAllData");
+        const resAllData=await axios.get("http://localhost:5000/getAllData");
         console.log(resAllData.data);
         setDataForChild(resAllData.data);
 
-       
+        //select year and select topic ---select box
+        let resAllYears=resAllData.data.map((item)=>{
+          return(item.start_year);
+        });
+
+        let uniqueYears=[];
+
+        resAllYears.forEach((element)=>{
+
+          if(uniqueYears.includes(element)==false)
+          {
+            uniqueYears.push(element);
+          }
+   
+        });
+//--------------------------------------
+        let uniqueTopics=[];
+
+        let resAllTopics=resAllData.data.map((item)=>{
+          return(item.topic);
+        });
+
+        //removing all dublicate objects from array
+        resAllTopics.forEach((element)=>{
+
+          if(uniqueTopics.includes(element)==false)
+          {
+            uniqueTopics.push(element);
+          }
+   
+        });
 
 
+
+        setYears(uniqueYears);
+
+        setTopics(uniqueTopics);
+
+  
         
 
       } catch (error) {
@@ -125,10 +152,10 @@ function App() {
       
       <select name="year" className='form-select'>
           <option value="">Select Year</option>
-          {years.map((item)=>{
+          {years.map((item,index)=>{
   
               return (
-                  <option value={item}>{item}</option>
+                  <option key={index} value={item}>{item}</option>
               )
   
           })}
@@ -137,10 +164,10 @@ function App() {
   
     <select name="topic" className='form-select'>
       <option value="">Select Topic</option>
-      {topics.map((item)=>{
+      {topics.map((item,index)=>{
   
       return (
-          <option value={item}>{item}</option>
+          <option key={index} value={item}>{item}</option>
       )
   
       })}
